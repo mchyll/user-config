@@ -1,0 +1,33 @@
+# Functions and aliases for bash.
+# Remember to add "source ~/.bash_config" to .bashrc to include this file
+
+
+function log() {
+    lines=200
+    if [ $# -ge 2 ]; then
+        lines=$2
+    fi
+    if [[ $(file $1) == *gzip* ]]; then
+        file $1
+        zcat $1 | tail -n $lines | ccze -A | less -R -S
+    else
+        tail -n $lines $1 | ccze -A | less -R -S
+    fi
+}
+
+function logf() {
+    tail --follow=name -n100 $1 | ccze
+}
+
+function lol() {
+    \ls -lah --color=always $1 | less -R
+}
+
+alias l='ls -lah'
+alias authlog='log /var/log/auth.log'
+alias authlogf='logf /var/log/auth.log'
+alias sn='sudo nano'
+alias pyt='python3'
+alias cproxy='ssh -NCqD1080 c'
+alias gs='git status'
+
