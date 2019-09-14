@@ -31,3 +31,6 @@ alias pyt='python3'
 alias cproxy='ssh -NCqD1080 c'
 alias gs='git status'
 
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
